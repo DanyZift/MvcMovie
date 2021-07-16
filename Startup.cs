@@ -24,10 +24,18 @@ namespace MvcMovie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            // services.AddDbContext<MvcMovieContext>(options =>
+            //     options.UseSqlite(
+            //         Configuration.GetConnectionString("SqlLiteConnection")));
 
-            services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            //In Memory DB Option
+            services.AddDbContext<MvcMovieContext>(opt => opt.UseInMemoryDatabase(databaseName: "MvcMovies"));
+
+            //SQL Server - Docker image
+            // services.AddDbContext<MvcMovieContext>(options =>
+            //         options.UseSqlServer(Configuration.GetConnectionString("LocalDockerConnection")));
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
