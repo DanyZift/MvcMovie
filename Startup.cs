@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Data;
 
 namespace MvcMovie
 {
@@ -29,11 +30,11 @@ namespace MvcMovie
             //         Configuration.GetConnectionString("SqlLiteConnection")));
 
             //In Memory DB Option
-            services.AddDbContext<MvcMovieContext>(opt => opt.UseInMemoryDatabase(databaseName: "MvcMovies"));
+            // services.AddDbContext<MvcMovieContext>(opt => opt.UseInMemoryDatabase(databaseName: "MvcMovies"));
 
             //SQL Server - Docker image
-            // services.AddDbContext<MvcMovieContext>(options =>
-            //         options.UseSqlServer(Configuration.GetConnectionString("LocalDockerConnection")));
+            services.AddDbContext<MvcMovieContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("LocalDockerConnection")));
 
             services.AddControllersWithViews();
         }
