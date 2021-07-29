@@ -1,0 +1,24 @@
+@model IEnumerable<MvcMovie.Models.WeatherModel>;
+
+@{
+    ViewData["Title"] = "The Weather";
+}
+
+<p>Todays Weather</p>
+
+<div class="alert alert-primary" role="alert">
+  No weathe today! :(
+</div>
+
+
+@foreach (var item in Model)
+{
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-header">@Html.DisplayFor(modelItem => item.Date)</div>
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Summary)</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.TemperatureC)</p>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.TemperatureF)</p>
+        </div>
+    </div>
+}

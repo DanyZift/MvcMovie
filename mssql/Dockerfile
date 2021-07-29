@@ -11,4 +11,4 @@ RUN chown -R 10001:0 entrypoint.sh
 
 USER 10001
 
-ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
+# ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
